@@ -3,7 +3,101 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "LU_get_L2_type",
+				"name": "Switch_source",
+				"type": "Switch",
+				"dependsOn": [
+					{
+						"activity": "LU_get_L2_type_copy1_copy1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"on": {
+						"value": "@activity('LU_get_L2_type_copy1_copy1').output.firstRow.L2_switch_type",
+						"type": "Expression"
+					},
+					"cases": [
+						{
+							"value": "API",
+							"activities": [
+								{
+									"name": "Wait1",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						},
+						{
+							"value": "Database",
+							"activities": [
+								{
+									"name": "Wait2",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						},
+						{
+							"value": "Filestore",
+							"activities": [
+								{
+									"name": "Wait3",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						},
+						{
+							"value": "CloudStorage",
+							"activities": [
+								{
+									"name": "Exe_L3_CloudStorage",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"policy": {
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"waitOnCompletion": true
+									}
+								}
+							]
+						},
+						{
+							"value": "SFTP",
+							"activities": [
+								{
+									"name": "Wait4",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "LU_get_L2_type_copy1_copy1",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -16,6 +110,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "select distinct L2_switch_type from dbo.tbl_job a join dbo.tbl_trigger b on a.trigger_id = b.trigger_id where b.trigger_name = '@{pipeline().parameters.Trigger}'",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -23,22 +121,6 @@
 						"referenceName": "AzureSqlTable1",
 						"type": "DatasetReference"
 					}
-				}
-			},
-			{
-				"name": "Switch1",
-				"type": "Switch",
-				"dependsOn": [
-					{
-						"activity": "LU_get_L2_type",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"cases": []
 				}
 			}
 		],

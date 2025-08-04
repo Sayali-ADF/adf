@@ -1,6 +1,11 @@
 {
 	"name": "L6_excel",
 	"properties": {
+		"parameters": {
+			"Trigger": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }

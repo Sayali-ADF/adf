@@ -31,7 +31,7 @@
 				}
 			},
 			{
-				"name": "Switch1",
+				"name": "Switch_cloud",
 				"type": "Switch",
 				"dependsOn": [
 					{
@@ -43,7 +43,57 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"cases": []
+					"cases": [
+						{
+							"value": "Azure",
+							"activities": [
+								{
+									"name": "Exe_FileType",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"policy": {
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "L4_Filetype",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true
+									}
+								}
+							]
+						},
+						{
+							"value": "aws",
+							"activities": [
+								{
+									"name": "Wait1",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						},
+						{
+							"value": "google",
+							"activities": [
+								{
+									"name": "Wait2",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						}
+					]
 				}
 			}
 		],

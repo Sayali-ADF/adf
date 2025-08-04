@@ -1,0 +1,16 @@
+{
+	"name": "LS_AzureBlobStorage_source",
+	"properties": {
+		"parameters": {
+			"storage_arc_loc": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "@{linkedService().storage_arc_loc}",
+			"accountKind": "BlobStorage"
+		}
+	}
+}

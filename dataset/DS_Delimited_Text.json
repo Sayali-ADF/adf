@@ -31,7 +31,7 @@
 					"value": "@dataset().file",
 					"type": "Expression"
 				},
-				"container": "Source"
+				"container": "sourcedata"
 			},
 			"columnDelimiter": {
 				"value": "@dataset().col_delimter",

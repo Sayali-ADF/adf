@@ -30,7 +30,8 @@
 				"fileName": {
 					"value": "@dataset().file",
 					"type": "Expression"
-				}
+				},
+				"container": "Source"
 			},
 			"columnDelimiter": {
 				"value": "@dataset().col_delimter",

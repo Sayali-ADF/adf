@@ -74,7 +74,17 @@
 									},
 									"userProperties": [],
 									"typeProperties": {
-										"waitOnCompletion": true
+										"pipeline": {
+											"referenceName": "L3_CloudStorage",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"Trigger": {
+												"value": "@activity('LU_get_L2_type_copy1_copy1').output.firstRow.L3_cloudeStorage",
+												"type": "Expression"
+											}
+										}
 									}
 								}
 							]
@@ -107,6 +117,7 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
+				"userProperties": [],
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",

@@ -78,13 +78,7 @@
 											"referenceName": "L3_CloudStorage",
 											"type": "PipelineReference"
 										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"Trigger": {
-												"value": "@activity('LU_get_L2_type_copy1_copy1').output.firstRow.L3_cloudeStorage",
-												"type": "Expression"
-											}
-										}
+										"waitOnCompletion": true
 									}
 								}
 							]
@@ -122,7 +116,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "select distinct L2_switch_type from dbo.tbl_job a join dbo.tbl_trigger b on a.trigger_id = b.trigger_id where b.trigger_name = '@{pipeline().parameters.Trigger}'",
+							"value": "select distinct L2_switch_type from dbo.tb1_job a join dbo.tb1_trigger b on a.trigger_id = b.trigger_id where b.trigger_name = '@{pipeline().parameters.Trigger}'",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",

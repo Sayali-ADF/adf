@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-project-vb-de-ingestion-training-1"
+		},
+		"LSAzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"LSAzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "sql-project-db-vb-training.database.windows.net"
+		},
+		"LSAzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "sql-project-srv-vb-de-training"
+		},
+		"LSAzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "dev_access_data"
+		},
+		"LS_AzureBlobStorage_source_properties_typeProperties_serviceEndpoint": {
+			"value": "@{linkedService().storage_arc_loc}"
+		},
+		"LS_AzureDataLakeStorage1_Raw_properties_typeProperties_url": {
+			"value": "@{linkedService().adls_storage_arc_loc}"
+		},
+		"LS_AzureDataLakeStorage_Raw_properties_typeProperties_url": {
+			"value": "@{linkedService().adls_storage_acc_lc}"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
